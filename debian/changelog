@@ -1,0 +1,5 @@
+gnatsd (0.6.8-1) unstable; urgency=low
+
+  * Initial release
+
+ -- Simon Eisenmann <simon@struktur.de>  Wed, 18 Nov 2015 10:06:13 +0100
