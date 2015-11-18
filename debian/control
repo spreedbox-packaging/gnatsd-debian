@@ -1,15 +1,24 @@
 Source: gnatsd
-Section: unknown
+Section: devel
 Priority: optional
-Maintainer: Simon Eisenmann <longsleep@redemption.intranet.struktur.de>
-Build-Depends: debhelper (>= 8.0.0)
-Standards-Version: 3.9.4
-Homepage: <insert the upstream URL, if relevant>
-#Vcs-Git: git://git.debian.org/collab-maint/gnatsd.git
-#Vcs-Browser: http://git.debian.org/?p=collab-maint/gnatsd.git;a=summary
+Maintainer: struktur AG <opensource@struktur.de>
+Uploaders: Simon Eisenmann <simon@struktur.de>
+Build-Depends: debhelper (>= 9),
+               dh-golang,
+               golang-go (>= 1.4.0),
+               golang-nats-dev (>= 1.1.2),
+               golang-goprotobuf-dev
+Standards-Version: 3.9.5
+Homepage: http://nats.io
+
+Package: golang-gnatsd-dev
+Architecture: all
+Depends: ${misc:Depends}
+Description: Gnatsd development Go package
+ Gnatsd development Go package
 
 Package: gnatsd
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: A High Performance NATS Server written in Go
+ High Performance Golang Server for NATS, the cloud native messaging system
