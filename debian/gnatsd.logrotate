@@ -1,0 +1,9 @@
+/var/log/gnatsd/server.log {
+       daily
+       rotate 52
+       copytruncate
+       delaycompress
+       compress
+       notifempty
+       missingok
+}

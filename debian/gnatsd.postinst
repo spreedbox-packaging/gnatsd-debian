@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+    configure|triggered)
+        if [ -e "/etc/init/gnatsd.conf" ]; then
+            service gnatsd restart || true
+        fi
+        ;;
+    *)
+        exit 0
+    ;;
+esac
+
+#DEBHELPER#

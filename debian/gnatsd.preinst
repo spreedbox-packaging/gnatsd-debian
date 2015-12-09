@@ -1,0 +1,44 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+    install|upgrade)
+       GNATSD_SERVICE_USER='gnatsd'
+       GNATSD_SERVICE_GROUP='gnatsd'
+       GNATSD_SERVICE_HOME='/var/lib/gnatsd'
+       GNATSD_SERVICE_LOG_DIR='/var/log/gnatsd'
+
+       # Create the service group
+       if ! getent group | grep -q "^$GNATSD_SERVICE_GROUP:"; then
+         echo -n "Adding system group $GNATSD_SERVICE_GROUP.."
+         addgroup --quiet \
+                  --system \
+                  $GNATSD_SERVICE_GROUP 2>/dev/null || true
+         echo "..done"
+       fi
+
+       # Create the service user
+       if ! getent passwd | grep -q "^$GNATSD_SERVICE_USER:"; then
+         echo -n "Adding system user $GNATSD_SERVICE_USER.."
+         adduser --quiet \
+                 --system \
+                 --ingroup $GNATSD_SERVICE_GROUP \
+                 --home $GNATSD_SERVICE_HOME \
+                 --no-create-home \
+                 --disabled-login \
+                 $GNATSD_SERVICE_USER 2>/dev/null || true
+         echo "..done"
+       fi
+
+       # Create the log directory.
+       test -e $GNATSD_SERVICE_LOG_DIR || mkdir -p $GNATSD_SERVICE_LOG_DIR
+       chown -R $GNATSD_SERVICE_USER:$GNATSD_SERVICE_GROUP $GNATSD_SERVICE_LOG_DIR
+       chmod 700 $GNATSD_SERVICE_LOG_DIR
+       ;;
+    *)
+        exit 0
+    ;;
+esac
+
+#DEBHELPER#

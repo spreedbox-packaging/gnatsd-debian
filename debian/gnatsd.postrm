@@ -1,0 +1,20 @@
+#! /bin/sh -e
+
+case "$1" in
+    purge)
+        # Purge logs
+        rm -rf /var/log/gnatsd 2>/dev/null || true
+
+        # Purge run directory
+        rm -rf /var/run/gnatsd 2>/dev/null || true
+        ;;
+    remove)
+        ;;
+    upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+        ;;
+    *)
+        echo "postrm called with unknown argument \`$1'" >&2
+        exit 1
+esac
+
+#DEBHELPER#

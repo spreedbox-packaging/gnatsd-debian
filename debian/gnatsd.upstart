@@ -1,0 +1,42 @@
+# gnatsd
+
+description "Gnatsd service"
+
+start on stopped rc
+stop on runlevel [!2345]
+
+env DAEMON=/usr/bin/gnatsd
+
+respawn
+respawn limit 10 2
+
+umask 077
+
+script
+    . /etc/default/gnatsd
+
+    # Create the run directory.
+    test -e $GNATSD_SERVICE_RUN_DIR || mkdir -p $GNATSD_SERVICE_RUN_DIR || true
+    chown -R $GNATSD_SERVICE_USER:$GNATSD_SERVICE_GROUP $GNATSD_SERVICE_RUN_DIR || true
+    chmod 770 $GNATSD_SERVICE_RUN_DIR || true
+
+    # Set some performance parameters
+    ulimit -n $GNATSD_SERVICE_NOFILE
+    export GOMAXPROCS=$GNATSD_SERVICE_GOMAXPROCS
+
+    exec start-stop-daemon --start \
+                           --make-pidfile \
+                           --pidfile $GNATSD_SERVICE_PID \
+                           --chuid $GNATSD_SERVICE_USER \
+                           --group $GNATSD_SERVICE_GROUP \
+                           --startas $DAEMON \
+                           -- \
+                           -l $GNATSD_SERVICE_LOG \
+                           $GNATSD_SERVICE_ARGS
+end script
+
+post-stop script
+    . /etc/default/gnatsd
+
+    rm -f $GNATSD_SERVICE_PID
+end script
