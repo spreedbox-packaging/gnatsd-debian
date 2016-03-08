@@ -1,3 +1,9 @@
+gnatsd (0.6.8-3) trusty; urgency=low
+
+  * Use "invoke-rc.d" to restart service.
+
+ -- Joachim Bauch <bauch@struktur.de>  Tue, 08 Mar 2016 10:18:06 +0100
+
 gnatsd (0.6.8-2) trusty; urgency=low
 
   * Added upstart scripts.
