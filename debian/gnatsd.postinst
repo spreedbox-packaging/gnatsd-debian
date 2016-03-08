@@ -2,10 +2,18 @@
 
 set -e
 
+invoke() {
+    if [ -x /usr/sbin/invoke-rc.d ]; then
+        invoke-rc.d $1 $2
+    else
+        service $1 $2
+    fi
+}
+
 case "$1" in
     configure|triggered)
         if [ -e "/etc/init/gnatsd.conf" ]; then
-            service gnatsd restart || true
+            invoke gnatsd restart || true
         fi
         ;;
     *)
