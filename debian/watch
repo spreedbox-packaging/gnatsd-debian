@@ -1,2 +1,3 @@
 version=2
-https://github.com/nats-io/gnatsd/tags .*/v?(\d\S*)\.tar\.gz
+opts=filenamemangle=s/.+\/v?(\d\S*)\.tar\.gz/gnatsd-$1\.tar\.gz/ \
+  https://github.com/nats-io/gnatsd/tags .*/v?(\d\S*)\.tar\.gz
