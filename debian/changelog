@@ -1,3 +1,12 @@
+gnatsd (0.6.8-4) trusty; urgency=medium
+
+  * Added watch file to be used by uscan.
+  * Removed unused "filenamemangle" from watchfile.
+  * Download new version as correctly named file.
+  * Add systemd service script.
+
+ -- Joachim Bauch <bauch@struktur.de>  Wed, 04 Jul 2018 17:32:36 +0200
+
 gnatsd (0.6.8-3) trusty; urgency=low
 
   * Use "invoke-rc.d" to restart service.
