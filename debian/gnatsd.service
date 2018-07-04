@@ -1,0 +1,15 @@
+[Unit]
+Description=Gnatsd service
+After=network.target
+
+[Service]
+User=gnatsd
+Group=gnatsd
+PrivateTmp=true
+ExecStart=/usr/bin/gnatsd -l /var/log/gnatsd/server.log --addr 127.0.0.1 --port 4222 --http_port 8222 --logtime
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s SIGINT $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

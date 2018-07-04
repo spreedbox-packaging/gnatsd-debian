@@ -7,6 +7,6 @@ export DH_GOPKG := github.com/nats-io/gnatsd
 #export DEB_BUILD_OPTIONS=nocheck
 
 %:
-	dh $@ --buildsystem=golang --with=golang --fail-missing
+	dh $@ --buildsystem=golang --with=golang,systemd --fail-missing
 
 override_dh_auto_test:
