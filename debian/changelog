@@ -1,3 +1,9 @@
+gnatsd (0.6.8-5~ubuntu14.04) unstable; urgency=medium
+
+  * Rebuild for Ubuntu Trusty.
+
+ -- Joachim Bauch <bauch@struktur.de>  Thu, 12 Jul 2018 16:29:43 +0200
+
 gnatsd (0.6.8-4) trusty; urgency=medium
 
   * Added watch file to be used by uscan.
