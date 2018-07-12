@@ -1,3 +1,9 @@
+gnatsd (0.6.8-5~ubuntu16.04) unstable; urgency=medium
+
+  * Rebuild for Ubuntu Xenial.
+
+ -- Joachim Bauch <bauch@struktur.de>  Thu, 12 Jul 2018 16:32:00 +0200
+
 gnatsd (0.6.8-5~ubuntu14.04) unstable; urgency=medium
 
   * Rebuild for Ubuntu Trusty.
